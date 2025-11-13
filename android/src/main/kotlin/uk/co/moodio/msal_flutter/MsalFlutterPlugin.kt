@@ -94,14 +94,7 @@ class MsalFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
         //acquire the token
         try {
-
-            val extraQueryParameters: MutableList<MutableMap.MutableEntry<String, String>> = ArrayList()
-            val  parameters =  AcquireTokenParameters.Builder().startAuthorizationFromActivity(activity)
-                .withAuthorizationQueryStringParameters(extraQueryParameters)
-                .withScopes(scopes.toList())
-                .withCallback(getAuthCallback(result))
-                .build();
-            msalApp.acquireToken(parameters)
+            msalApp.acquireToken(activity, scopes, getAuthCallback(result))
         }catch(e: MsalException){
             Log.d("MsalFlutter", "MSAL excepton thrown on acquire token")
             handleMsalException(e, result)
@@ -196,7 +189,6 @@ class MsalFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         {
             override fun onCreated(application: IPublicClientApplication) {
                 msalApp = application as MultipleAccountPublicClientApplication
-
                 Handler(Looper.getMainLooper()).post {
                     result.success(true)
                 }

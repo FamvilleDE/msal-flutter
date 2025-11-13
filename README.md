@@ -1,9 +1,9 @@
-We are looking for start ups to work with for launching our new productised IAM and user management system which greatly simplifies adding user authentication to your app and includes additional functionality for user management and analytics. To find out more or sign up please visit [https://www.joopie.co](https://www.joopie.co "Joopie") and let us know you came from this repo.
-
 ## IMPORTANT ANNOUNCEMENT
-This package comes as is. Unfortunately we do not have the resources to offer free support, help, or review any PRs. Please feel free to fork or use this package in anyway you like. For paid support options please email us at info@muljin.com.
+For any bugs, please open an issue and we will make our best effort to review it when time permits.
 
 ## Version 2.0.0
+This package comes as is. Unfortunately we do not have the resources to offer free support, help, or review any PRs. Please feel free to fork or use this package in anyway you like. For paid support options please email us at info@muljin.com.
+
 Version 2.0.0+ have moved to nullable and a non-nullable version will not be available. Please ensure all packages you use support nullable and you have updated to the latest version of stable flutter.
 
 ### Upgrade guide
@@ -64,10 +64,8 @@ The default redirect url is msal\<YOUR-CLIENT-ID\>://auth however this can now b
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-            <data
-                android:scheme="msauth"
-                android:host="<YOUR_PACKAGE_NAME>"
-                android:path="/<YOUR_BASE64_ENCODED_PACKAGE_SIGNATURE>" />
+        <data android:scheme="msal<YOUR-CLIENT-ID>"
+            android:host="auth" />
     </intent-filter>
 </activity>
 ```
